@@ -6,9 +6,10 @@
 %     y = 0.5;
 %     z = -1.1;
     x = 0.05;
-    y = -0.03;
+    y = -0.5;
     z = -1;
 
+    %define
     x_ = 1;
     y_ = 2;
     z_ = 3;
@@ -16,6 +17,7 @@
     n2 = 2;
     M_PI = 3.14159265358979323846;
     
+    %start solving
     uB = sB * sqrt(3.0) / 3.0;
     wB = sB * sqrt(3.0) / 6.0;
     uP = sP * sqrt(3.0) / 3.0;
@@ -138,9 +140,19 @@
     plot3(P3P1(:,1),P3P1(:,2),P3P1(:,3),'r');
     hold on
     
-    OA1_ = OB1 + [0, -L*cos(q1_res), -L*sin(q1_res)];
-    OA2_ = OB2 + [L*sqrt(3.0)*cos(q2_res)/2.0, L*cos(q2_res)/2.0, -L*sin(q2_res)];
-    OA3_ = OB3 + [-L*sqrt(3.0)*cos(q3_res)/2.0, L*cos(q3_res)/2.0, -L*sin(q3_res)];
+    b1B3 = [Ob1;OB3];
+    b2B1 = [Ob2;OB1];
+    b3B2 = [Ob3;OB2];
+    plot3(b1B3(:,1),b1B3(:,2),b1B3(:,3),'r');
+    hold on
+    plot3(b2B1(:,1),b2B1(:,2),b2B1(:,3),'r');
+    hold on
+    plot3(b3B2(:,1),b3B2(:,2),b3B2(:,3),'r');
+    hold on
+    
+    OA1_ = OB1 + [0, -L*cosd(q1_res), -L*sind(q1_res)];
+    OA2_ = OB2 + [L*sqrt(3.0)*cosd(q2_res)/2.0, L*cosd(q2_res)/2.0, -L*sind(q2_res)];
+    OA3_ = OB3 + [-L*sqrt(3.0)*cosd(q3_res)/2.0, L*cosd(q3_res)/2.0, -L*sind(q3_res)];
     
     B1A1 = [OB1;OA1_];
     B2A2 = [OB2;OA2_];
