@@ -1,4 +1,4 @@
-function [q1_res, q2_res, q3_res] = invertKinematic(x, y, z):
+% function [q1_res, q2_res, q3_res] = invertKinematic(x, y, z)
     L = 0.524;
     l = 1.244;
     sB = 0.567;
@@ -17,7 +17,7 @@ function [q1_res, q2_res, q3_res] = invertKinematic(x, y, z):
     n1 = 1;
     n2 = 2;
     M_PI = 3.14159265358979323846;
-    
+    L_ = 0.1;
     %start solving
     P = [x, y, z];
     
@@ -167,6 +167,24 @@ function [q1_res, q2_res, q3_res] = invertKinematic(x, y, z):
     OA2_ = OB2 + [L*sqrt(3.0)*cosd(q2_res)/2.0, L*cosd(q2_res)/2.0, -L*sind(q2_res)];
     OA3_ = OB3 + [-L*sqrt(3.0)*cosd(q3_res)/2.0, L*cosd(q3_res)/2.0, -L*sind(q3_res)];
     
+    OA3_1 = [OA3_(x_)+L_*cosd(60), OA3_(y_)+L*cosd(30), OA3_(z_)];
+    OA3_2 = [OA3_(x_)-L_*cosd(60), OA3_(y_)-L*cosd(30), OA3_(z_)];
+    OA3__ = [OA3_1;OA3_2];
+    plot3(OA3__(:,1), OA3__(:,2), OA3__(:,3),'g');
+    hold on
+    
+    OA2_1 = [OA2_(x_)+L_*cosd(60), OA2_(y_)-L*cosd(30), OA2_(z_)];
+    OA2_2 = [OA2_(x_)-L_*cosd(60), OA2_(y_)+L*cosd(30), OA2_(z_)];
+    OA2__ = [OA2_1;OA2_2];
+    plot3(OA2__(:,1), OA2__(:,2), OA2__(:,3),'g');
+    hold on
+    
+    OA1_1 = [OA1_(x_)-L_, OA1_(y_), OA1_(z_)];
+    OA1_2 = [OA1_(x_)+L_, OA1_(y_), OA1_(z_)];
+    OA1__ = [OA1_1;OA1_2];
+    plot3(OA1__(:,1), OA1__(:,2), OA1__(:,3),'g');
+    hold on
+    
     B1A1 = [OB1;OA1_];
     B2A2 = [OB2;OA2_];
     B3A3 = [OB3;OA3_];
@@ -190,3 +208,4 @@ function [q1_res, q2_res, q3_res] = invertKinematic(x, y, z):
     OZ = [[0,0,0];[0,0,z]];
     plot3(OZ(:,1),OZ(:,2),OZ(:,3),'r');
     grid on;
+% end
