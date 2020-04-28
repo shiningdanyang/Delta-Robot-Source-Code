@@ -218,7 +218,7 @@ function [q1_res, q2_res, q3_res] = invertKinematic(x, y, z)
               sqrt((OA3_(1)-OP3(1))^2+(OA3_(2)-OP3(2))^2+(OA3_(3)-OP3(3))^2)]
           
     OZ = [[0,0,0];[0,0,z]];
-    plot3(OZ(:,1),OZ(:,2),OZ(:,3),'r');
+%     plot3(OZ(:,1),OZ(:,2),OZ(:,3),'r');
     hold on
     plot3(0,0,-1.5);
     hold on
