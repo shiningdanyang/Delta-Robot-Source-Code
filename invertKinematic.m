@@ -1,8 +1,8 @@
 % function [q1_res, q2_res, q3_res] = invertKinematic(x, y, z)
-    L = 0.524;
-    l = 1.244;
-    sB = 0.567;
-    sP = 0.076;
+    L = 0.2;
+    l = 0.28;
+    sB = 0.35;
+    sP = 0.107;
 %     x = 0.3;
 %     y = 0.5;
 %     z = -1.1;
