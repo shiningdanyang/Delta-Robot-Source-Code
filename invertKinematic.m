@@ -1,15 +1,18 @@
-% function [q1_res, q2_res, q3_res] = invertKinematic(x, y, z)
-    L = 0.2;
-    l = 0.28;
-    sB = 0.35;
-    sP = 0.107;
+function [q1_res, q2_res, q3_res] = invertKinematic(x, y, z)
+    L = 0.524;
+    l = 1.244;
+    sB = 0.567;
+    sP = 0.076;
+
 %     x = 0.3;
 %     y = 0.5;
 %     z = -1.1;
-    x = 0.0;
-    y = -0.0;
-    z = -1;
-
+%     x = 0.0;
+%     y = -0.0;
+%     z = -1;
+    clf;
+    plot3(0,0,0);
+    
     %define
     x_ = 1;
     y_ = 2;
@@ -62,15 +65,15 @@
     Ob3(y_) = -wB;
     Ob3(z_) = 0.0;
     
-    OA1(x_) = 0.0;
-    OA1(y_) = L - wB;
-    OA1(z_) = 0.0;
-    OA2(x_) = (sqrt(3.0) / 2.0) * (wB - L);
-    OA2(y_) = (1 / 2) * (wB - L);
-    OA2(z_) = 0.0;
-    OA3(x_) = (sqrt(3.0) / 2.0) * (L - wB);
-    OA3(y_) = (1.0 / 2.0) * (L + wB);
-    OA3(z_) = 0.0;
+%     OA1(x_) = 0.0;
+%     OA1(y_) = L - wB;
+%     OA1(z_) = 0.0;
+%     OA2(x_) = (sqrt(3.0) / 2.0) * (wB - L);
+%     OA2(y_) = (1 / 2) * (wB - L);
+%     OA2(z_) = 0.0;
+%     OA3(x_) = (sqrt(3.0) / 2.0) * (L - wB);
+%     OA3(y_) = (1.0 / 2.0) * (L + wB);
+%     OA3(z_) = 0.0;
     
     a = -uP + wB;
     b = (sP / 2.0) - (wB * sqrt(3) / 2);
@@ -122,7 +125,7 @@
         q3_res = q(3,n2);
     end
 
-    figure;
+%     figure;
     b1b2 = [Ob2;Ob1];
     b2b3 = [Ob3;Ob2];
     b3b1 = [Ob1;Ob3];
@@ -167,32 +170,36 @@
     OA2_ = OB2 + [L*sqrt(3.0)*cosd(q2_res)/2.0, L*cosd(q2_res)/2.0, -L*sind(q2_res)];
     OA3_ = OB3 + [-L*sqrt(3.0)*cosd(q3_res)/2.0, L*cosd(q3_res)/2.0, -L*sind(q3_res)];
     
-    OA3_1 = [OA3_(x_)+L_*cosd(60), OA3_(y_)+L*cosd(30), OA3_(z_)];
-    OA3_2 = [OA3_(x_)-L_*cosd(60), OA3_(y_)-L*cosd(30), OA3_(z_)];
-    OA3__ = [OA3_1;OA3_2];
-    plot3(OA3__(:,1), OA3__(:,2), OA3__(:,3),'g');
-    hold on
-    
-    OA2_1 = [OA2_(x_)+L_*cosd(60), OA2_(y_)-L*cosd(30), OA2_(z_)];
-    OA2_2 = [OA2_(x_)-L_*cosd(60), OA2_(y_)+L*cosd(30), OA2_(z_)];
-    OA2__ = [OA2_1;OA2_2];
-    plot3(OA2__(:,1), OA2__(:,2), OA2__(:,3),'g');
-    hold on
-    
-    OA1_1 = [OA1_(x_)-L_, OA1_(y_), OA1_(z_)];
-    OA1_2 = [OA1_(x_)+L_, OA1_(y_), OA1_(z_)];
-    OA1__ = [OA1_1;OA1_2];
-    plot3(OA1__(:,1), OA1__(:,2), OA1__(:,3),'g');
-    hold on
+%     OA3_1 = [OA3_(x_)+L_*cosd(60), OA3_(y_)+L*cosd(30), OA3_(z_)];
+%     OA3_2 = [OA3_(x_)-L_*cosd(60), OA3_(y_)-L*cosd(30), OA3_(z_)];
+%     OA3__ = [OA3_1;OA3_2];
+%     plot3(OA3__(:,1), OA3__(:,2), OA3__(:,3),'g');
+%     hold on
+%     
+%     OA2_1 = [OA2_(x_)+L_*cosd(60), OA2_(y_)-L*cosd(30), OA2_(z_)];
+%     OA2_2 = [OA2_(x_)-L_*cosd(60), OA2_(y_)+L*cosd(30), OA2_(z_)];
+%     OA2__ = [OA2_1;OA2_2];
+%     plot3(OA2__(:,1), OA2__(:,2), OA2__(:,3),'g');
+%     hold on
+%     
+%     OA1_1 = [OA1_(x_)-L_, OA1_(y_), OA1_(z_)];
+%     OA1_2 = [OA1_(x_)+L_, OA1_(y_), OA1_(z_)];
+%     OA1__ = [OA1_1;OA1_2];
+%     plot3(OA1__(:,1), OA1__(:,2), OA1__(:,3),'g');
+%     hold on
     
     B1A1 = [OB1;OA1_];
     B2A2 = [OB2;OA2_];
     B3A3 = [OB3;OA3_];
+
     plot3(B1A1(:,1),B1A1(:,2),B1A1(:,3),'b');
+    text(OA1_(1), OA1_(2), OA1_(3), 'A1');
     hold on
     plot3(B2A2(:,1),B2A2(:,2),B2A2(:,3),'b');
+    text(OA2_(1), OA2_(2), OA2_(3), 'A2');
     hold on
     plot3(B3A3(:,1),B3A3(:,2),B3A3(:,3),'b');
+    text(OA3_(1), OA3_(2), OA3_(3), 'A3');
     hold on
     
     A1P1 = [OA1_;OP1];
@@ -204,8 +211,26 @@
     hold on
     plot3(A3P3(:,1),A3P3(:,2),A3P3(:,3),'g');
     hold on
-    
+    length = [sqrt((OA1_(1)-OB1(1))^2+(OA1_(2)-OB1(2))^2+(OA1_(3)-OB1(3))^2),...
+              sqrt((OA2_(1)-OB2(1))^2+(OA2_(2)-OB2(2))^2+(OA2_(3)-OB2(3))^2),...
+              sqrt((OA3_(1)-OB3(1))^2+(OA3_(2)-OB3(2))^2+(OA3_(3)-OB3(3))^2),...
+              sqrt((OA1_(1)-OP1(1))^2+(OA1_(2)-OP1(2))^2+(OA1_(3)-OP1(3))^2),...
+              sqrt((OA2_(1)-OP2(1))^2+(OA2_(2)-OP2(2))^2+(OA2_(3)-OP2(3))^2),...
+              sqrt((OA3_(1)-OP3(1))^2+(OA3_(2)-OP3(2))^2+(OA3_(3)-OP3(3))^2)]
+          
     OZ = [[0,0,0];[0,0,z]];
-    plot3(OZ(:,1),OZ(:,2),OZ(:,3),'r');
+%     plot3(OZ(:,1),OZ(:,2),OZ(:,3),'r');
+    hold on
+    plot3(0,0,-1.5);
+    hold on
+    plot3(0,0,1.5);
+    grid on;
+    plot3(0.7, 0.7, -1.5);
+    grid on;
+    plot3(0.7, -0.7, -1.5);
+    grid on;
+    plot3(-0.7, 0.7, -1.5);
+    grid on;
+    plot3(-0.7, -0.7, -1.5);
     grid on;
 % end
