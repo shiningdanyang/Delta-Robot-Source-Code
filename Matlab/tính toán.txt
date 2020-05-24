@@ -1,0 +1,2 @@
+z prepare = -0.34
+z grip    = -0.45
